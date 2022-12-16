@@ -10,9 +10,6 @@ export const deleteUserService = async(id: string): Promise<Array<number | objec
         if (!user) {
             throw new AppError("User not found", 400)
         }
-        if(!user.isActive) {
-            throw new AppError("User is not active", 400)
-        }
         
         user.isActive = false
         await userRepository.save(user)

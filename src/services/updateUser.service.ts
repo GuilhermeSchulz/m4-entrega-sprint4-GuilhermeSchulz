@@ -11,7 +11,6 @@ export const updateUserService = async(userData: IUserUpdate , id: string): Prom
     if(!userData){
         throw new AppError('Need Params', 401);
     }
-    console.log(userData)
         const userRepository = AppDataSource.getRepository(User)
 
         const user = await userRepository.findOneBy({id: id})
@@ -34,7 +33,6 @@ export const updateUserService = async(userData: IUserUpdate , id: string): Prom
             email: userBody.email || user.email
         }
         
-        console.log(newObj)
         await userRepository.save(newObj)
 
         return [200, {message: "user deleted successfully"}]
